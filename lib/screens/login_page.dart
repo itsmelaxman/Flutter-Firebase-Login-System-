@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:signup_signin/screens/home_screen.dart';
 import 'package:signup_signin/screens/registration_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -94,7 +95,14 @@ class _LoginScreenState extends State<LoginScreen> {
       child: MaterialButton(
         padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
         minWidth: MediaQuery.of(context).size.width,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => HomeScreen(),
+            ),
+          );
+        },
         child: const Text(
           'Login',
           textAlign: TextAlign.center,
