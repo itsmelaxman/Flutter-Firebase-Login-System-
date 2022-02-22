@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:signup_signin/screens/login_page.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.;
   runApp(const LoginSystem());
 }
+
+class Firebase {}
 
 class LoginSystem extends StatelessWidget {
   const LoginSystem({Key? key}) : super(key: key);

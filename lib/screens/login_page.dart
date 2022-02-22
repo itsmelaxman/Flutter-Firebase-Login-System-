@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:signup_signin/screens/home_screen.dart';
 import 'package:signup_signin/screens/registration_screen.dart';
@@ -20,6 +21,17 @@ class _LoginScreenState extends State<LoginScreen> {
     final emailField = TextFormField(
       controller: emailController,
       autofocus: false,
+      validator: (value) {
+        if (value != null && value.isEmpty) {
+          return 'Please Enter Your Email';
+        }
+        if (!RegExp("z[a-z0-9]+@[a-z0-9]+\\.[a-z]+").hasMatch(value.toString()))
+          ;
+        {
+          return 'Please enter a valid email';
+        }
+        return null;
+      },
       keyboardType: TextInputType.emailAddress,
       decoration: const InputDecoration(
         hintText: 'Email',
@@ -43,6 +55,15 @@ class _LoginScreenState extends State<LoginScreen> {
       controller: passwordController,
       autofocus: false,
       obscureText: !isVisible,
+      validator: (value) {
+        RegExp regex = RegExp(r'.{6,}');
+        if (value != null && value.isEmpty) {
+          return 'Paassword is required for login';
+        }
+        if (!regex.hasMatch(value.toString())) {
+          return 'Password must be atleast 6 characters';
+        }
+      },
       keyboardType: TextInputType.emailAddress,
       decoration: const InputDecoration(
         hintText: 'Password',
@@ -88,6 +109,9 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
 
+//firebase auth
+    final _auth = FirebaseAuth.instance;
+
     final loginButton = Material(
       elevation: 0,
       borderRadius: BorderRadius.circular(30),
@@ -96,12 +120,7 @@ class _LoginScreenState extends State<LoginScreen> {
         padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
         minWidth: MediaQuery.of(context).size.width,
         onPressed: () {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => HomeScreen(),
-            ),
-          );
+          signIn(emailController.text, passwordController.text);
         },
         child: const Text(
           'Login',
@@ -196,5 +215,38 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+  void signIn(String email, String password) async {
+    if (_formKey.currentState!.validate()) {
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password)
+          .then((uid) => {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Login Successful'),
+                  ),
+                ),
+                //Page
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(
+                    builder: (context) => HomeScreen(),
+                  ),
+                )
+              })
+          .catchError((e) => {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Login Failed'),
+                  ),
+                ),
+              });
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Login Failed'),
+        ),
+      );
+    }
   }
 }
