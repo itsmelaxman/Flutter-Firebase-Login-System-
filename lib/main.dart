@@ -14,7 +14,7 @@ class LoginSystem extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Login System',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
       home: LoginScreen(),
     );
