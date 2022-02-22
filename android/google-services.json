@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "872124748522",
+    "project_id": "emailpasswordauth-e8b35",
+    "storage_bucket": "emailpasswordauth-e8b35.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:872124748522:android:c647344d943186de967d93",
+        "android_client_info": {
+          "package_name": "com.magaratilaxman.np.epauth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "872124748522-hs2dl4ut2c116ugrilcmmsir97mdu4ul.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAX6uQpwPJc8W302CyYmFrR8j_-nV0_t9Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "872124748522-hs2dl4ut2c116ugrilcmmsir97mdu4ul.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

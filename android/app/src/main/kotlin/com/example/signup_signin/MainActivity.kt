@@ -1,4 +1,4 @@
-package com.example.signup_signin
+package com.magaratilaxman.np.epauth
 
 import io.flutter.embedding.android.FlutterActivity
 
